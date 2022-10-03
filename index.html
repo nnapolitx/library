@@ -15,7 +15,17 @@
                     <h1>Library</h1>
                 </div>
                 <div class="lib-input">
-                    <button>New Book +</button>
+                    <form action="">
+                        <label for="input-title">Book Title</label>
+                        <input type="text" id="input-title" name="input-title" placeholder="Psych 101" required>
+                        <label for="input-author">Author(s)</label>
+                        <input type="text" id="input-author" name="input-author" placeholder="Deci, E. & Ryan, R." required>
+                        <label for="input-pages">Number of Pages</label>
+                        <input type="number" id="input-pages" name="input-pages" placeholder="299" required>
+                        <label for="input-status">Read It?</label>
+                        <input type="checkbox" id="input-status" name="input-status">
+                        <button type="reset" id="new-book">New Book +</button>
+                    </form>
                 </div>
             </header>
 
