@@ -18,12 +18,18 @@
                     <form action="">
                         <label for="input-title">Book Title</label>
                         <input type="text" id="input-title" name="input-title" placeholder="Psych 101" required>
+
                         <label for="input-author">Author(s)</label>
                         <input type="text" id="input-author" name="input-author" placeholder="Deci, E. & Ryan, R." required>
+
                         <label for="input-pages">Number of Pages</label>
                         <input type="number" id="input-pages" name="input-pages" placeholder="299" required>
-                        <label for="input-status">Read It?</label>
-                        <input type="checkbox" id="input-status" name="input-status">
+
+                        <fieldset>
+                            <label for="input-status">Read It?</label>
+                            <input type="checkbox" id="input-status" name="input-status">
+                        </fieldset>
+
                         <button type="reset" id="new-book">New Book +</button>
                     </form>
                 </div>
@@ -34,18 +40,12 @@
                     <h2>Book List</h2>
                 </div>
 
-                <div class="grid-container">
+                <div class="book-container">
                     <div class="title first-row">Title</div>
                     <div class="author first-row">Author</div>
                     <div class="pages first-row">Pages</div>
                     <div class="status first-row">Status</div>
                     <div class="remove first-row">Remove</div>
-
-                    <div class="title">Title</div>
-                    <div class="author">Author</div>
-                    <div class="pages">Pages</div>
-                    <div class="status">Status</div>
-                    <div class="remove">Remove</div>
                 </div>
             </div>
 
