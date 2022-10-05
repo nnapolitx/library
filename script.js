@@ -6,10 +6,6 @@ function Book(title, author, pages, read) {
     this.index = index;
 }
 
-Book.prototype.removeBook = function () {
-    //
-}
-
 const arr = [];
 
 const inputTitle = document.querySelector('#input-title');
@@ -17,6 +13,7 @@ const inputAuthor = document.querySelector('#input-author');
 const inputPages = document.querySelector('#input-pages');
 const inputStatus = document.querySelector('#input-status');
 const newBook = document.querySelector('#new-book');
+const bookShelf = document.querySelector('.book-container');
 
 function enterBook(entry) {
     entry = Object.create(Book)
@@ -26,7 +23,40 @@ function enterBook(entry) {
     entry.read = inputStatus.checked;
     entry.index = arr.length;
     arr.push(entry);
+    addBookToLibrary(entry);
 }
+
+function addBookToLibrary(e){
+    console.log(e);
+    let divArr = Object.values(e);
+    console.log(divArr);
+    
+    for (let i=0; i<4; i++){
+        const row = document.createElement('div');
+        row.classList.add('.row');
+        bookShelf.appendChild(row);
+        row.textContent=divArr[i];
+    }
+
+}
+
+newBook.addEventListener('click', (e) => {
+    console.log('passed');
+    enterBook(e);
+});
+
+function findBook(b) {
+    let indexNum = arr.map(object=>object.title).indexOf(b);
+    return indexNum;
+}
+
+function deleteBook(b) {
+    let i = findBook(b);
+    arr.splice(i,1);
+    return arr;
+}
+
+/* //This funciton inputs the book based on input to the form, however, instructions from T.O.P. indicate I need to write a fucntion that loops through the array.
 
 newBook.addEventListener('click', (e) => {
     console.log('passed');
@@ -54,5 +84,6 @@ newBook.addEventListener('click', (e) => {
     title.textContent = inputTitle.value;
     author.textContent = inputAuthor.value;
     pages.textContent = inputPages.value;
-    status.textContent = inputStatus.checked;
+    status.textContent = inputStatus.checked;  
 });
+*/
