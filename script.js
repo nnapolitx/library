@@ -1,13 +1,15 @@
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.index = index;
-}
+let library =[]
 
-const arr = [];
 
+
+
+
+
+
+
+
+
+/*let myLibrary =[];
 const inputTitle = document.querySelector('#input-title');
 const inputAuthor = document.querySelector('#input-author');
 const inputPages = document.querySelector('#input-pages');
@@ -15,35 +17,68 @@ const inputStatus = document.querySelector('#input-status');
 const newBook = document.querySelector('#new-book');
 const bookShelf = document.querySelector('.book-container');
 
-function enterBook(entry) {
-    entry = Object.create(Book)
-    entry.title = inputTitle.value;
-    entry.author = inputAuthor.value;
-    entry.pages = inputPages.value;
-    entry.read = inputStatus.checked;
-    entry.index = arr.length;
-    arr.push(entry);
-    addBookToLibrary(entry);
+const title = document.createElement('div');
+title.classList.add('.title');
+const author = document.createElement('div');
+author.classList.add('.author');
+const pages = document.createElement('div');
+pages.classList.add('.pages');
+const stat = document.createElement('div');
+stat.classList.add('.status');
+const remove = document.createElement('div');
+remove.classList.add('.remove');
+
+const checkmark = document.createElement('img');
+checkmark.classList.add('.checkmark');
+checkmark.src = 'img/check.png';
+const xbox = document.createElement('img');
+xbox.classList.add('.xbox');
+xbox.src = 'img/xbox.png';
+
+function Book (title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
 }
 
-function addBookToLibrary(e){
-    console.log(e);
-    let divArr = Object.values(e);
-    console.log(divArr);
-    
-    for (let i=0; i<4; i++){
-        const row = document.createElement('div');
-        row.classList.add('.row');
-        bookShelf.appendChild(row);
-        row.textContent=divArr[i];
-    }
-
+function addBooktoLibrary(bk) {
+    bk = Object.create(Book);
+    bk.title = inputTitle.value;
+    bk.author = inputAuthor.value;
+    bk.pages = inputPages.value;
+    bk.read = inputStatus.checked;
+    myLibrary.push(bk);
+    shelfBook(bk);
 }
 
 newBook.addEventListener('click', (e) => {
-    console.log('passed');
-    enterBook(e);
+    addBooktoLibrary(e);
 });
+
+function shelfBook(e) {
+    let v = Object.values(e);
+    console.log(v);
+    title.textContent=v[0];
+    author.textContent=v[1];
+    pages.textContent=v[2];
+
+    bookShelf.appendChild(title);
+    bookShelf.appendChild(author);
+    bookShelf.appendChild(pages);
+
+    if (v[3]===true){
+        stat.textContent='Read';
+        bookShelf.appendChild(stat);
+        stat.appendChild(checkmark);
+    } else {
+        stat.textContent='Not Read';
+        bookShelf.appendChild(stat)
+        stat.appendChild(xbox);
+    }
+    
+    bookShelf.appendChild(remove);
+}
 
 function findBook(b) {
     let indexNum = arr.map(object=>object.title).indexOf(b);
@@ -53,37 +88,5 @@ function findBook(b) {
 function deleteBook(b) {
     let i = findBook(b);
     arr.splice(i,1);
-    return arr;
-}
-
-/* //This funciton inputs the book based on input to the form, however, instructions from T.O.P. indicate I need to write a fucntion that loops through the array.
-
-newBook.addEventListener('click', (e) => {
-    console.log('passed');
-    enterBook(e);
-
-    const bookContainer = document.querySelector('.book-container');
-
-    const title = document.createElement('div');
-    title.classList.add('.title-row');
-    const author = document.createElement('div');
-    author.classList.add('.author-row');
-    const pages = document.createElement('div');
-    pages.classList.add('.pages-row');
-    const status = document.createElement('div');
-    status.classList.add('.status-row');
-    const remove = document.createElement('div');
-    remove.classList.add('.remove-row');
-
-    bookContainer.appendChild(title);
-    bookContainer.appendChild(author);
-    bookContainer.appendChild(pages);
-    bookContainer.appendChild(status);
-    bookContainer.appendChild(remove);
-
-    title.textContent = inputTitle.value;
-    author.textContent = inputAuthor.value;
-    pages.textContent = inputPages.value;
-    status.textContent = inputStatus.checked;  
-});
-*/
+    return myLibrary;
+}*/
