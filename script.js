@@ -29,8 +29,9 @@ function addBooktoLibrary(bk){
     bk.author = inputAuthor.value
     bk.pages = inputPages.value
     bk.read = inputStatus.checked
-    myLibrary.push(bk)
+    library.push(bk)
 }
+
 
 
 
