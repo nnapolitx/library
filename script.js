@@ -3,7 +3,7 @@ const inputTitle = document.querySelector('#input-title')
 const inputAuthor = document.querySelector('#input-author')
 const inputPages = document.querySelector('#input-pages')
 const inputStatus = document.querySelector('#input-status')
-const newBook = document.querySelector('#new-book')
+const addBookBtn = document.querySelector('#new-book')
 const bookshelf = document.querySelector('.bookshelf')
 
 const checkmark = document.createElement('img')
@@ -13,8 +13,7 @@ const xbox = document.createElement('img')
 xbox.classList.add('.xbox')
 xbox.src = 'img/xbox.png'
 
-const newBook = document.createElement('div')
-newBook.classList.add('.book')
+
 
 function Book (title, author, pages, read){
     this.title = title
@@ -32,16 +31,38 @@ function addBooktoLibrary(bk){
     library.push(bk)
 }
 
+addBookBtn.addEventListener('click', (e) => {
+    addBooktoLibrary(e)
+});
 
+function findBook(b) {
+    let indexNum = library.map(object=>object.title).indexOf(b);
+    return indexNum;
+}
 
+//deletes based on title, but will need to change
+function deleteBook(b) {
+    let i = findBook(b);
+    library.splice(i,1);
+    return library;
+}
 
-
-
-
+function shelfBook(bk){
+    library.forEach(function (libro) {
+        console.log('pass')
+        const newBook = document.createElement('div')
+        newBook.classList.add('.book')
+        newBook.innerHTML = libro.title
+        bookshelf.appendChild(newBook)
+        console.log('done')
+    })
+}
 
 
 /*
 
+
+    
 
 function addBooktoLibrary(bk) {
     bk = Object.create(Book);
@@ -81,13 +102,4 @@ function shelfBook(e) {
     bookShelf.appendChild(remove);
 }
 
-function findBook(b) {
-    let indexNum = arr.map(object=>object.title).indexOf(b);
-    return indexNum;
-}
-
-function deleteBook(b) {
-    let i = findBook(b);
-    arr.splice(i,1);
-    return myLibrary;
-}*/
+*/
