@@ -33,6 +33,7 @@ function addBooktoLibrary(bk){
 
 addBookBtn.addEventListener('click', (e) => {
     addBooktoLibrary(e)
+    shelfBook(library.at(-1))
 });
 
 function findBook(b) {
@@ -48,16 +49,15 @@ function deleteBook(b) {
 }
 
 function shelfBook(bk){
-    library.forEach(function (libro) {
+    
         console.log('pass')
         const newBook = document.createElement('div')
         newBook.classList.add('.book')
-        newBook.innerHTML = libro.title
+        newBook.innerHTML = bk.title
         bookshelf.appendChild(newBook)
         console.log('done')
-    })
-}
 
+}
 
 /*
 
