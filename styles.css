@@ -39,6 +39,18 @@ select {
   font: inherit;
 }
 
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--drk-blu);
+}
+
 :root {
     --light-bkrnd: #fcf8f3;
     --light-blue: #aedadd; 
@@ -83,23 +95,13 @@ h1 {
 }
 
 .bookshelf {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(10, 1fr);
   gap: 2px;
   width: 100%
 }
 
-.bookshelf>*{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  
-  gap: 8px;
-  width: 130px;
-  height: 500px;
-  border: 2px solid black;
-  border-radius: 12px;
+img {
+  cursor: pointer;
 }
