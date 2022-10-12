@@ -97,11 +97,19 @@ function findBook(b) {
     return indexNum;
 }
 
-// deletes based on title, but will need to change
+// deletes only from array
 function deleteBook(b) {
     let i = findBook(b);
     library.splice(i, 1);
     return library;
 }
 
-//Current deleteBook deletes from highest to lowest index, instead of looking for the title.
+//----Bugs to fix----
+//
+
+// ----THINGS TO DO----
+//Need to remove DOM elements on the deleteBook function
+//Need add an eventListener to the check and x img's so that they change back and forth
+//Need to create a read/not read list, book list, delete all button
+//Need to change style of EVERYTHING, this project is ugly.
+//
