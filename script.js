@@ -1,4 +1,4 @@
-let library =[]
+let library = []
 const inputTitle = document.querySelector('#input-title')
 const inputAuthor = document.querySelector('#input-author')
 const inputPages = document.querySelector('#input-pages')
@@ -6,23 +6,16 @@ const inputStatus = document.querySelector('#input-status')
 const addBookBtn = document.querySelector('#new-book')
 const bookshelf = document.querySelector('.bookshelf')
 
-const checkmark = document.createElement('img')
-checkmark.classList.add('.checkmark')
-checkmark.src = 'img/check.png'
-const xbox = document.createElement('img')
-xbox.classList.add('.xbox')
-xbox.src = 'img/xbox.png'
-
 let allBtns;
 
-function Book (title, author, pages, read){
+function Book(title, author, pages, read) {
     this.title = title
     this.author = author
     this.pages = pages
     this.read = read
 }
 
-function addBooktoLibrary(bk){
+function addBooktoLibrary(bk) {
     bk = Object.create(Book)
     bk.title = inputTitle.value
     bk.author = inputAuthor.value
@@ -31,8 +24,7 @@ function addBooktoLibrary(bk){
     library.push(bk)
 }
 
-function shelfBook(bk){
-    
+function shelfBook(bk) {
     console.log('pass')
     const newBook = document.createElement('ul')
     newBook.classList.add('.book')
@@ -43,34 +35,41 @@ function shelfBook(bk){
     const pages = document.createElement('li')
     const read = document.createElement('li')
     const remove = document.createElement('li')
-    
+
+    const checkmark = document.createElement('img')
+    checkmark.classList.add('.checkmark')
+    checkmark.src = 'img/check.png'
+    const xbox = document.createElement('img')
+    xbox.classList.add('.xbox')
+    xbox.src = 'img/xbox.png'
+
     let v = Object.values(bk);
     console.log(v);
-    title.textContent=v[0];
-    author.textContent=v[1];
-    pages.textContent=v[2];
+    title.textContent = v[0];
+    author.textContent = v[1];
+    pages.textContent = v[2];
 
     newBook.appendChild(title);
     newBook.appendChild(author);
     newBook.appendChild(pages);
 
-    if (v[3]===true){
-        read.textContent='Read';
+    if (v[3] === true) {
+        read.textContent = 'Read';
         newBook.appendChild(read);
         read.appendChild(checkmark);
     } else {
-        read.textContent='Not Read';
+        read.textContent = 'Not Read';
         newBook.appendChild(read)
         read.appendChild(xbox);
-    }
+    } 
     
     newBook.appendChild(remove);
     const rembtn = document.createElement('button')
-    rembtn.setAttribute('id', 'remove')
+    rembtn.setAttribute('id', v[0])
     rembtn.textContent = 'Remove?'
     remove.appendChild(rembtn)
-    
-    allBtns=document.querySelectorAll('#remove')
+
+    allBtns = document.querySelectorAll('.bookshelf button')
 
     removeButtonEvent()
     console.log('done')
@@ -82,22 +81,27 @@ addBookBtn.addEventListener('click', (e) => {
     console.log(library.at(-1))
 });
 
-function removeButtonEvent(){
-    for (let j=0; j<library.length+1; j++){//Need to remove +1 after removing example//
-        allBtns[j].addEventListener('click', (e)=>{
-            console.log(e)
+function removeButtonEvent() {
+    for (let j = library.length; j < library.length + 1; j++) {
+        allBtns[j].addEventListener('click', (e) => {
+            console.log(e.target.id)
+            let tit = e.target.id
+            deleteBook(tit)
         })
     }
 }
 
 function findBook(b) {
-    let indexNum = library.map(object=>object.title).indexOf(b);
+    let indexNum = library.map(object => object.title).indexOf(b);
+    console.log(indexNum)
     return indexNum;
 }
 
-//deletes based on title, but will need to change
+// deletes based on title, but will need to change
 function deleteBook(b) {
     let i = findBook(b);
-    library.splice(i,1);
+    library.splice(i, 1);
     return library;
 }
+
+//Current deleteBook deletes from highest to lowest index, instead of looking for the title.
