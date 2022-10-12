@@ -25,7 +25,6 @@ function addBooktoLibrary(bk) {
 }
 
 function shelfBook(bk) {
-    console.log('pass')
     const newBook = document.createElement('ul')
     newBook.classList.add('.book')
     bookshelf.appendChild(newBook)
@@ -44,7 +43,6 @@ function shelfBook(bk) {
     xbox.src = 'img/xbox.png'
 
     let v = Object.values(bk);
-    console.log(v);
     title.textContent = v[0];
     author.textContent = v[1];
     pages.textContent = v[2];
@@ -59,12 +57,14 @@ function shelfBook(bk) {
         read.textContent = 'Read';
         newBook.appendChild(read);
         read.appendChild(checkmark);
+        checkmark.addEventListener('click', changeReadStatus)
     } else {
         read.textContent = 'Not Read';
         newBook.appendChild(read)
         read.appendChild(xbox);
-    } 
-    
+        xbox.addEventListener('click', changeReadStatus)
+    }
+
     newBook.appendChild(remove);
     const rembtn = document.createElement('button')
     rembtn.setAttribute('id', v[0])
@@ -74,21 +74,18 @@ function shelfBook(bk) {
     allBtns = document.querySelectorAll('.bookshelf button')
 
     removeButtonEvent()
-    console.log('done')
 }
 
 addBookBtn.addEventListener('click', (e) => {
     addBooktoLibrary(e)
     shelfBook(library.at(-1))
-    console.log(library.at(-1))
-});
+})
 
 function removeButtonEvent() {
     for (let j = library.length; j < library.length + 1; j++) {
         allBtns[j].addEventListener('click', (e) => {
-            console.log(e.target.id)
-            let tit = e.target.id
-            deleteBook(tit)
+            let titleAtt = e.target.id
+            deleteBook(titleAtt)
         })
     }
 }
@@ -110,11 +107,32 @@ function deleteBook(b) {
     return library;
 }
 
+function readStatus(e){
+    
+}
+
+function changeReadStatus(e){
+
+    if (e.target.classList[0] === '.checkmark'){
+        console.log('check to x')//start here
+        let partext = e.target.parentNode
+        partext.textContent='Not Read'
+        e.target.src='img/xbox.png'
+        e.target.setAttribute('class', '.xbox')
+        console.log(e.target.classList)
+    }else {
+        console.log('x to check')
+        e.target.src='img/check.png'
+        e.target.setAttribute('class', '.checkmark')
+        console.log(e.target.classList)
+    }
+}
+
 //----Bugs to fix----
 //Since the button on the form is a reset button, does not check for numbers on the 'pages' input
 
 // ----THINGS TO DO----
-//Need add an eventListener to the check and x img's so that they change back and forth
+//Need add an eventListener to change the text of the parent element "Read" or "Not Read"
 //Need to create a read/not read list, book list, delete all button
 //Need to change style of EVERYTHING, this project is ugly.
 //Change the button on the form to a normal button and write a function that checks for parameters
