@@ -49,6 +49,8 @@ function shelfBook(bk) {
     author.textContent = v[1];
     pages.textContent = v[2];
 
+    newBook.setAttribute('id', v[0])
+
     newBook.appendChild(title);
     newBook.appendChild(author);
     newBook.appendChild(pages);
@@ -100,16 +102,19 @@ function findBook(b) {
 // deletes only from array
 function deleteBook(b) {
     let i = findBook(b);
+    const eraseNode = document.getElementById(b)
+    console.log(eraseNode)
+    eraseNode.remove()
+
     library.splice(i, 1);
     return library;
 }
 
 //----Bugs to fix----
-//
+//Since the button on the form is a reset button, does not check for numbers on the 'pages' input
 
 // ----THINGS TO DO----
-//Need to remove DOM elements on the deleteBook function
 //Need add an eventListener to the check and x img's so that they change back and forth
 //Need to create a read/not read list, book list, delete all button
 //Need to change style of EVERYTHING, this project is ugly.
-//
+//Change the button on the form to a normal button and write a function that checks for parameters
