@@ -91,7 +91,14 @@ fieldset {
 }
 
 h1 {
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
+}
+
+.scoreboard{
+  display: flex;
+  justify-content: center;
+  gap: 1.5em;
+  margin-bottom: 1em;
 }
 
 .bookshelf {
@@ -100,6 +107,13 @@ h1 {
   grid-template-rows: repeat(10, 1fr);
   gap: 2px;
   width: 100%
+}
+
+.books-read, .book-number {
+  border: 2px solid var(--drk-blu);
+  background-color: var(--light-blue);
+  padding: 0 .5em;
+  margin-left: 6px;
 }
 
 img {

@@ -1,11 +1,12 @@
 let library = []
+//inputs
 const inputTitle = document.querySelector('#input-title')
 const inputAuthor = document.querySelector('#input-author')
 const inputPages = document.querySelector('#input-pages')
 const inputStatus = document.querySelector('#input-status')
 const addBookBtn = document.querySelector('#new-book')
 const bookshelf = document.querySelector('.bookshelf')
-
+//all future remove buttons
 let allBtns;
 
 function Book(title, author, pages, read) {
@@ -98,7 +99,6 @@ function findBook(b) {
     return indexNum;
 }
 
-// deletes only from array
 function deleteBook(b) {
     let i = findBook(b);
     const eraseNode = document.getElementById(b)
@@ -126,11 +126,12 @@ function changeReadStatus(e){
     }
 }
 
+
+
 //----Bugs to fix----
 //Since the button on the form is a reset button, does not check for numbers on the 'pages' input
 
 // ----THINGS TO DO----
-//Need add an eventListener to change the text of the parent element "Read" or "Not Read"
 //Need to create a read/not read list, book list, delete all button
 //Need to change style of EVERYTHING, this project is ugly.
 //Change the button on the form to a normal button and write a function that checks for parameters
