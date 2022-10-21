@@ -33,6 +33,7 @@ function shelfBook(bk) {
     const author = document.createElement('li')
     const pages = document.createElement('li')
     const read = document.createElement('li')
+    const readText = document.createElement('span')
     const remove = document.createElement('li')
 
     const checkmark = document.createElement('img')
@@ -52,15 +53,16 @@ function shelfBook(bk) {
     newBook.appendChild(title);
     newBook.appendChild(author);
     newBook.appendChild(pages);
+    newBook.appendChild(read);
 
     if (v[3] === true) {
-        read.textContent = 'Read';
-        newBook.appendChild(read);
+        readText.textContent = 'Read';
+        read.appendChild(readText);
         read.appendChild(checkmark);
         checkmark.addEventListener('click', changeReadStatus)
     } else {
-        read.textContent = 'Not Read';
-        newBook.appendChild(read)
+        readText.textContent = 'Not Read';
+        read.appendChild(readText);
         read.appendChild(xbox);
         xbox.addEventListener('click', changeReadStatus)
     }
@@ -107,24 +109,20 @@ function deleteBook(b) {
     return library;
 }
 
-function readStatus(e){
-    
-}
-
 function changeReadStatus(e){
 
     if (e.target.classList[0] === '.checkmark'){
-        console.log('check to x')//start here
-        let partext = e.target.parentNode
+        let partext = e.target.previousElementSibling
+        console.log(partext.textContent)
         partext.textContent='Not Read'
         e.target.src='img/xbox.png'
         e.target.setAttribute('class', '.xbox')
-        console.log(e.target.classList)
     }else {
-        console.log('x to check')
+        let partext = e.target.previousElementSibling
+        console.log(partext.textContent)
+        partext.textContent='Read'
         e.target.src='img/check.png'
         e.target.setAttribute('class', '.checkmark')
-        console.log(e.target.classList)
     }
 }
 
