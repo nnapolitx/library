@@ -13,6 +13,13 @@ const removeAll = document.querySelector('#remove-all')
 //all future remove buttons
 let allBtns;
 
+bookNumber.textContent=library.length
+
+
+let readCounter=0
+booksRead.textContent=readCounter
+
+
 function Book(title, author, pages, read) {
     this.title = title
     this.author = author
@@ -65,6 +72,7 @@ function shelfBook(bk) {
         read.appendChild(readText);
         read.appendChild(checkmark);
         checkmark.addEventListener('click', changeReadStatus)
+        readCounter+=1
     } else {
         readText.textContent = 'Not Read';
         read.appendChild(readText);
@@ -79,7 +87,7 @@ function shelfBook(bk) {
     remove.appendChild(rembtn)
 
     allBtns = document.querySelectorAll('.bookshelf button')
-
+    booksRead.textContent=readCounter
     removeButtonEvent()
 }
 
@@ -94,6 +102,8 @@ removeAll.addEventListener('click', (e) => {
         bookshelf.removeChild(bookshelf.lastChild)
     }
     library = []
+    readCounter=0
+    booksRead.textContent=readCounter
 })
 
 function removeButtonEvent() {
@@ -106,15 +116,18 @@ function removeButtonEvent() {
 }
 
 function findBook(b) {
-    let indexNum = library.map(object => object.title).indexOf(b);
-    console.log(indexNum)
+    let indexNum = library.map(object => object.title).indexOf(b)
     return indexNum;
 }
 
 function deleteBook(b) {
     let i = findBook(b);
     const eraseNode = document.getElementById(b)
-    console.log(eraseNode)
+    if (library[i].read===true) {
+        readCounter-=1
+        booksRead.textContent=readCounter
+    }
+
     eraseNode.remove()
 
     library.splice(i, 1);
@@ -129,12 +142,16 @@ function changeReadStatus(e){
         partext.textContent='Not Read'
         e.target.src='img/xbox.png'
         e.target.setAttribute('class', '.xbox')
+        readCounter-=1
+        booksRead.textContent=readCounter
     }else {
         let partext = e.target.previousElementSibling
         console.log(partext.textContent)
         partext.textContent='Read'
         e.target.src='img/check.png'
         e.target.setAttribute('class', '.checkmark')
+        readCounter+=1
+        booksRead.textContent=readCounter
     }
 }
 
