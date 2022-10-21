@@ -6,6 +6,10 @@ const inputPages = document.querySelector('#input-pages')
 const inputStatus = document.querySelector('#input-status')
 const addBookBtn = document.querySelector('#new-book')
 const bookshelf = document.querySelector('.bookshelf')
+//getting elements from the "scoreboard"
+const bookNumber = document.querySelector('.book-number')
+const booksRead = document.querySelector('.books-read')
+const removeAll = document.querySelector('#remove-all')
 //all future remove buttons
 let allBtns;
 
@@ -84,6 +88,14 @@ addBookBtn.addEventListener('click', (e) => {
     shelfBook(library.at(-1))
 })
 
+removeAll.addEventListener('click', (e) => {
+    console.log('removeall event')
+    while (bookshelf.firstChild) {
+        bookshelf.removeChild(bookshelf.lastChild)
+    }
+    library = []
+})
+
 function removeButtonEvent() {
     for (let j = library.length; j < library.length + 1; j++) {
         allBtns[j].addEventListener('click', (e) => {
@@ -132,6 +144,6 @@ function changeReadStatus(e){
 //Since the button on the form is a reset button, does not check for numbers on the 'pages' input
 
 // ----THINGS TO DO----
-//Need to create a read/not read list, book list, delete all button
+//Need to create a read/not read list, book list
 //Need to change style of EVERYTHING, this project is ugly.
 //Change the button on the form to a normal button and write a function that checks for parameters
