@@ -88,6 +88,7 @@ function shelfBook(bk) {
 
     allBtns = document.querySelectorAll('.bookshelf button')
     booksRead.textContent=readCounter
+    bookNumber.textContent=library.length
     removeButtonEvent()
 }
 
@@ -104,11 +105,13 @@ removeAll.addEventListener('click', (e) => {
     library = []
     readCounter=0
     booksRead.textContent=readCounter
+    bookNumber.textContent=library.length
 })
 
 function removeButtonEvent() {
-    for (let j = library.length; j < library.length + 1; j++) {
+    for (let j = library.length-1; j < library.length; j++) {
         allBtns[j].addEventListener('click', (e) => {
+            console.log(e.target.id)
             let titleAtt = e.target.id
             deleteBook(titleAtt)
         })
@@ -129,38 +132,41 @@ function deleteBook(b) {
     }
 
     eraseNode.remove()
-
     library.splice(i, 1);
+    bookNumber.textContent=library.length
     return library;
 }
 
 function changeReadStatus(e){
+    let getsListItem = e.target.parentElement
+    let iDforBookobj = getsListItem.parentElement
 
-    if (e.target.classList[0] === '.checkmark'){
-        let partext = e.target.previousElementSibling
-        console.log(partext.textContent)
-        partext.textContent='Not Read'
-        e.target.src='img/xbox.png'
-        e.target.setAttribute('class', '.xbox')
+    let i = findBook(iDforBookobj.id)
+
+    if (library[i].read === true){
+        library[i].read = false
         readCounter-=1
         booksRead.textContent=readCounter
-    }else {
-        let partext = e.target.previousElementSibling
-        console.log(partext.textContent)
-        partext.textContent='Read'
-        e.target.src='img/check.png'
-        e.target.setAttribute('class', '.checkmark')
+        let readStatusText = e.target.previousElementSibling
+        readStatusText.textContent='Not Read'
+        e.target.src='img/xbox.png'
+        e.target.setAttribute('class', '.xbox')
+    } else {
+        library[i].read = true
         readCounter+=1
         booksRead.textContent=readCounter
+        let readStatusText = e.target.previousElementSibling
+        readStatusText.textContent='Read'
+        e.target.src='img/check.png'
+        e.target.setAttribute('class', '.checkmark')
     }
 }
 
 
 
 //----Bugs to fix----
-//Since the button on the form is a reset button, does not check for numbers on the 'pages' input
+//Since the button on the form is a reset button, does not check for <required> or input types.
 
 // ----THINGS TO DO----
-//Need to create a read/not read list, book list
 //Need to change style of EVERYTHING, this project is ugly.
 //Change the button on the form to a normal button and write a function that checks for parameters
