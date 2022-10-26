@@ -80,8 +80,8 @@ form>button{
   padding: .5em 1em;
 }
 
-input {
-  margin-bottom: 1rem;
+label {
+  margin-top: 1rem;
 }
 
 .main {
@@ -156,4 +156,11 @@ img {
 
 .shelf-header{
   width: 100%;
+}
+
+.error{
+  color: rgb(153, 15, 15);
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: smaller;
 }

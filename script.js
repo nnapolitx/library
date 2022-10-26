@@ -12,6 +12,10 @@ const booksRead = document.querySelector('.books-read')
 const removeAll = document.querySelector('#remove-all')
 //all future remove buttons
 let allBtns;
+//all error messages
+const titleError = document.querySelector('.title-error')
+const authorError = document.querySelector('.auth-error')
+const pageError = document.querySelector('.page-error')
 
 bookNumber.textContent=library.length
 let readCounter=0
@@ -91,11 +95,29 @@ function shelfBook(bk) {
 }
 
 addBookBtn.addEventListener('click', (e) => {
+
+    titleError.textContent=''
+    authorError.textContent=''
+    pageError.textContent=''
+    inputTitle.style.backgroundColor='white'
+    inputAuthor.style.backgroundColor='White'
+    inputPages.style.backgroundColor='White'
+
     if (inputTitle.value === '' || inputAuthor.value === ''
         || inputPages.value === '' || inputPages === NaN){
             
-            
-
+            if (inputTitle.value === ''){
+                titleError.textContent='*Please enter a valid title*'
+                inputTitle.style.backgroundColor='#ff000049'
+            }
+            if (inputAuthor.value === ''){
+                authorError.textContent='*Please enter a valid author name*'
+                inputAuthor.style.backgroundColor='#ff000049'
+            }
+            if (inputPages.value === NaN || inputPages.value===''){
+                pageError.textContent='*Please enter a number using digits*'
+                inputPages.style.backgroundColor='#ff000049'
+            }
             return
         } else{
             addBooktoLibrary(e)
@@ -173,12 +195,10 @@ function changeReadStatus(e){
 }
 
 
-//Currently: messing with style
+//Currently: Considering changing style
 
 
 //----Bugs to fix----
 
 
 // ----THINGS TO DO----
-//Reset inputs to '' on clik event listener
-//Throw UI/UX errors if inputs are incorrect or undefined
