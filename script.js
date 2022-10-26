@@ -14,8 +14,6 @@ const removeAll = document.querySelector('#remove-all')
 let allBtns;
 
 bookNumber.textContent=library.length
-
-
 let readCounter=0
 booksRead.textContent=readCounter
 
@@ -93,8 +91,20 @@ function shelfBook(bk) {
 }
 
 addBookBtn.addEventListener('click', (e) => {
-    addBooktoLibrary(e)
-    shelfBook(library.at(-1))
+    if (inputTitle.value === '' || inputAuthor.value === ''
+        || inputPages.value === '' || inputPages === NaN){
+            
+            
+
+            return
+        } else{
+            addBooktoLibrary(e)
+            shelfBook(library.at(-1))
+            inputTitle.value = ''
+            inputAuthor.value = ''
+            inputPages.value = ''
+            inputStatus.checked=undefined
+        }
 })
 
 removeAll.addEventListener('click', (e) => {
@@ -170,5 +180,5 @@ function changeReadStatus(e){
 
 
 // ----THINGS TO DO----
-//Need to change style of EVERYTHING, this project is ugly.
-//Change the button on the form to a normal button and write a function that checks for parameters
+//Reset inputs to '' on clik event listener
+//Throw UI/UX errors if inputs are incorrect or undefined
