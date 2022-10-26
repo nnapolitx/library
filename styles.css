@@ -43,12 +43,6 @@ ul{
   list-style-type: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid var(--drk-blu);
 }
 
 :root {
@@ -68,7 +62,7 @@ ul{
 header {
     display: flex;
     flex-direction: column;
-    flex-basis: 25rem;
+    flex-basis: 15rem;
     flex-grow: 1;
     align-items: center;
     background-color: var(--drk-blu);
@@ -76,7 +70,7 @@ header {
 }
 
 .main {
-    flex-basis: 45rem;
+    flex-basis: 54rem;
     flex-grow: 9999;
     display: flex;
     flex-direction: column;
@@ -102,11 +96,23 @@ h1 {
 }
 
 .bookshelf {
+  border: 1px solid var(--drk-blu);
+  width: 100%;
+}
+
+.bookshelf ul{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  gap: 2px;
-  width: 100%
+  gap: 1em;
+  align-items: center;
+}
+
+.bookshelf ul > *{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
 }
 
 .books-read, .book-number {
@@ -118,4 +124,15 @@ h1 {
 
 img {
   cursor: pointer;
+}
+
+.shelf-header ul {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1em;
+  text-align: center;
+}
+
+.shelf-header{
+  width: 100%;
 }

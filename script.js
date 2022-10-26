@@ -163,9 +163,11 @@ function changeReadStatus(e){
 }
 
 
+//Currently: messing with style
+
 
 //----Bugs to fix----
-//Since the button on the form is a reset button, does not check for <required> or input types.
+
 
 // ----THINGS TO DO----
 //Need to change style of EVERYTHING, this project is ugly.
