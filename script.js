@@ -195,7 +195,7 @@ function changeReadStatus(e){
 }
 
 
-//Currently: Considering changing style
+//Currently:
 
 
 //----Bugs to fix----
